@@ -13,13 +13,13 @@ public class SimplePhonology {
                     "000000ɬɮ00000000000000" +
                     "000ʋ000ɹ000ɻ0j0ɰ000000" +
                     "0000000l000ɭ0ʎ0ʟ000000" +
-                    "iyɨʉɯu" +
-                    "ɪʏ000ʊ" +
-                    "eøɘɵɤo" +
-                    "00ə000" +
-                    "ɛœɜɞʌɔ" +
-                    "æ0ɐ000" +
-                    "aɶ00ɑɒ";
+                    "iy00ɨʉ00ɯu" +
+                    "00ɪʏ000ʊ00" +
+                    "eø00ɘɵ00ɤo" +
+                    "0000ə00000" +
+                    "ɛœ00ɜɞ00ʌɔ" +
+                    "æ000ɐ00000" +
+                    "aɶ000000ɑɒ";
 
     public SimplePhonology(int seed) {
         fillBase(); // this is foundation
@@ -107,7 +107,7 @@ public class SimplePhonology {
 
     }
 
-    private List<String> ipaToDesc(Character ipa) {
+    private HashSet<String> ipaToDesc(Character ipa) {
         if (IPA.indexOf(ipa) < 22 * 7) {
             return ipaToDescCons(ipa);
         } else {
@@ -120,74 +120,78 @@ public class SimplePhonology {
      * @param ipa
      * @return
      */
-    private List<String> ipaToDescCons(String ipa) {
+    private HashSet<String> ipaToDescCons(Character ipa) {
         int index = IPA.indexOf(ipa);
-        HashMap<Integer, String> moas = new HashMap();
-        moas.put(0, "Stop");
-        moas.put(1, "Nasal");
-        moas.put(2, "Trill");
-        moas.put(3, "Tap");
-        moas.put(4, "Fricative");
-        moas.put(5, "Lateral Fricative");
-        moas.put(6, "Approximant");
-        moas.put(7, "Lateral Approximant");
-        HashMap<Integer, String> poas = new HashMap<>();
-        poas.put(0, "Bilabial");
-        poas.put(1, "Labiodental");
-        poas.put(2, "Dental");
-        poas.put(3, "Alveolar");
-        poas.put(4, "Post-Alveolar");
-        poas.put(5, "Retroflex");
-        poas.put(6, "Palatal");
-        poas.put(7, "Velar");
-        poas.put(8, "Uvular");
-        poas.put(9, "Pharyngeal");
-        poas.put(10, "Glottal");
+        String[] moas = new String[]{
+                "Stop", "Nasal", "Trill",
+                "Tap", "Fricative", "Lateral Fricative",
+                "Lateral Fricative", "Approximant", "Lateral Approximant"
+        };
+        String[] poas = new String[]{
+                "Bilabial", "Labiodental", "Dental",
+                "Alveolar", "Post-Alveolar", "Retroflex",
+                "Palatal", "Velar", "Uvular", "Pharyngeal",
+                "Glottal"
+        };
         int counter = 0;
         while (counter * 22 <= index) {
             counter += 1;
         }
         counter -= 1;
-        String manner = moas.get(counter);
+        String manner = moas[counter]; //moas.get(counter);
         int counter2 = 0;
         while (counter2 * 2 <= index - counter * 22) {
             counter2 += 1;
         }
         counter2 -= 1;
-        String place = poas.get(counter2);
+        String place = poas[counter2]; //poas.get(counter2);
         String voicing;
         if (counter2 % 2 == 0) {
             voicing = "Voiceless";
         } else {
             voicing = "Voiced";
         }
-        List<String> description = new ArrayList<>();
+        HashSet<String> description = new HashSet<>();
         description.add(voicing);
         description.add(place);
         description.add(manner);
         return description;
     }
 
-    private List<String> ipaToDescVowels(String ipa) {
+    private HashSet<String> ipaToDescVowels(Character ipa) {
         int index = IPA.indexOf(ipa);
-        HashMap<Integer, String> heights = new HashMap<>();
-        heights.put(0, "High");
-        heights.put(1, "Near-close");
-        heights.put(2, "Close-mid");
-        heights.put(3, "Mid");
-        heights.put(4, "Open-mid");
-        heights.put(5, "Near-open");
-        heights.put(6, "Open");
-        HashMap<Integer, String> frontness = new HashMap<>();
-        frontness.put(0, "Front");
-        frontness.put(1, "Near-front");
-        frontness.put(2, "Central");
-        frontness.put(3, "Near-back");
-        frontness.put(4, "Back");
-
+        String[] heights = new String[]{
+                "High", "Near-close", "Close-mid", "Mid",
+                "Open-mid", "Near-open", "Open"
+        };
+        String[] frontnesses = new String[]{
+                "Front", "Near-front", "Central", "Near-back",
+                "Back"
+        };
         index -= 154; // CHECK IF THIS NUMBER IS CORRECT
-        HashMap
-        int height =
+        int counter = 0;
+        while (counter * 10 <= index) {
+            counter++;
+        }
+        counter -= 1;
+        String height = heights[counter];
+        int counter2 = 0;
+        while (counter2 * 2 <= index - counter * 10) {
+            counter++;
+        }
+        counter2 -= 1;
+        String frontness = frontnesses[counter2];
+        String roundness;
+        if ((index - counter * 10) % 2 == 0) {
+            roundness = "Rounded";
+        } else {
+            roundness = "Unrounded";
+        }
+        HashSet<String> description = new HashSet<>();
+        description.add(roundness);
+        description.add(frontness);
+        description.add(height);
+        return description;
     }
 
 }
