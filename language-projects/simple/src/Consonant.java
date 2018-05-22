@@ -21,7 +21,7 @@ public class Consonant {
                     "aɶ00ɑɒ";*/
 
     public Consonant(String ipa) {
-        String description = ipaConsToDesc(ipa);
+        String description = ipaToDesc(ipa);
         String[] descriptors = description.split(description);
         this.voicing = descriptors[0];
         this.poa = descriptors[1];
@@ -58,8 +58,8 @@ public class Consonant {
         return moa;
     }
 
-    private String ipaConsToDesc(String ipaC) {
-        int index = IPA.indexOf(ipaC);
+    private String ipaToDesc(String ipa) {
+        int index = IPA.indexOf(ipa);
         HashMap<Integer, String> moas = new HashMap();
         moas.put(0, "Stop");
         moas.put(1, "Nasal");

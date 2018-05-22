@@ -12,6 +12,17 @@ public class Vowel {
             "æ0ɐ000" +
             "aɶ00ɑɒ";
 
+    public Vowel(String ipa) {
+        String description = ipaToDesc(ipa);
+        String[] descriptors = description.split(description);
+        this.height = descriptors[0];
+        this.frontness = descriptors[1];
+        this.roundedness = descriptors[2];
+        this.tenseness = descriptors[3];
+        this.nasality = descriptors[4];
+
+    }
+
     public Vowel (String h, String fr, String round, String tense, String nas) {
         this.height = h;
         this.frontness = fr;
@@ -59,5 +70,9 @@ public class Vowel {
      */
     public String getNasality() {
         return nasality;
+    }
+
+    private String ipaToDesc(String ipa) {
+
     }
 }
