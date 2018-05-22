@@ -1,10 +1,7 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class SimplePhonology {
-    private List<String> phInv;
+    private List<Character> phInv;
     private Double SEED;
     private List<String> secArts;
 
@@ -43,10 +40,10 @@ public class SimplePhonology {
         phInv.add('ŋ');
         phInv.add('j');
         phInv.add('w');
-        phInv.add("s");
-        phInv.add("i");
-        phInv.add("u");
-        phInv.add("a");
+        phInv.add('s');
+        phInv.add('i');
+        phInv.add('u');
+        phInv.add('a');
     }
 
     /**
@@ -110,8 +107,12 @@ public class SimplePhonology {
 
     }
 
-    private List<String> ipaToDesc(String ipa) {
-        if ()
+    private List<String> ipaToDesc(Character ipa) {
+        if (IPA.indexOf(ipa) < 22 * 7) {
+            return ipaToDescCons(ipa);
+        } else {
+            return ipaToDescVowels(ipa);
+        }
     }
     /**
      * This method converts an ipa symbol for a consonant into a full description,
@@ -166,4 +167,27 @@ public class SimplePhonology {
         description.add(manner);
         return description;
     }
+
+    private List<String> ipaToDescVowels(String ipa) {
+        int index = IPA.indexOf(ipa);
+        HashMap<Integer, String> heights = new HashMap<>();
+        heights.put(0, "High");
+        heights.put(1, "Near-close");
+        heights.put(2, "Close-mid");
+        heights.put(3, "Mid");
+        heights.put(4, "Open-mid");
+        heights.put(5, "Near-open");
+        heights.put(6, "Open");
+        HashMap<Integer, String> frontness = new HashMap<>();
+        frontness.put(0, "Front");
+        frontness.put(1, "Near-front");
+        frontness.put(2, "Central");
+        frontness.put(3, "Near-back");
+        frontness.put(4, "Back");
+
+        index -= 154; // CHECK IF THIS NUMBER IS CORRECT
+        HashMap
+        int height =
+    }
+
 }
