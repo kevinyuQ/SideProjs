@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 public class SimplePhonology {
-    private static final List<String> baseInv = new ArrayList<>();
+    private List<String> phInv;
     private Double SEED;
     private List<String> secArts;
 
@@ -25,9 +25,9 @@ public class SimplePhonology {
                     "aɶ00ɑɒ";
 
     public SimplePhonology(int seed) {
-        fillBase();
+        fillBase(); // this is foundation
         Random chooser = new Random(seed);
-        chooseSecArts(chooser);
+        addExtra(chooser); // now add in the extra features
     }
 
     /**
@@ -35,37 +35,91 @@ public class SimplePhonology {
      * in the languages. This phonemic inventory acts as the basis for the language.
      */
     private void fillBase() {
-        baseInv.add("p");
-        baseInv.add("t");
-        baseInv.add("k");
-        baseInv.add("m");
-        baseInv.add("n");
-        baseInv.add("ŋ");
-        baseInv.add("j");
-        baseInv.add("w");
-        baseInv.add("s");
-        baseInv.add("i");
-        baseInv.add("u");
-        baseInv.add("a");
+        phInv.add('p');
+        phInv.add('t');
+        phInv.add('k');
+        phInv.add('m');
+        phInv.add('n');
+        phInv.add('ŋ');
+        phInv.add('j');
+        phInv.add('w');
+        phInv.add("s");
+        phInv.add("i");
+        phInv.add("u");
+        phInv.add("a");
     }
 
     /**
-     * This method decides what secondary articulation to include. Aspiration is considered
-     * as a type of secondary articulation.
+     * This method creates a phonetic inventory for the language. This method
+     * destructively modifies the phonemic inventory after the base has been added in.
+     * It chooses among the remaining places of articulation (labiodental, dental, retroflex, etc.).
      */
-    private void chooseSecArts(Random chooser) {
-        if (chooser.nextBoolean()) {
-            secArts.add("ʰ");
-        }
-        if (chooser.nextInt() % 3 == 0) {
-            secArts.add("ʷ");
-        }
-        if (chooser.nextInt() % (4 + secArts.size()) == 0) {
-            secArts.add("ʲ");
-        }
+    private void addExtra(Random chooser) {
+        decideCharacterisitics();
+
     }
 
-    private String ipaToDescCons(String ipa) {
+    /**
+     * This method decides the characteristics of the conlang.
+     * Decides the following characteristics:
+     * 1. Has voiced consonants (voiced stops, voiced affricates, and voiced fricatives)
+     * 2. Has aspirated stops
+     * 3. Syllable structure
+     * 4. Which places of articulation to include besides those in the base inventory.
+     */
+    private void decideCharacterisitics(Random chooser) {
+        decideExtraPOAs();
+        decideVoiced(chooser);
+        decideAspirated();
+        decideSyllStruct();
+    }
+
+    /**
+     * This method decides whether or not to include voiced stops and fricatives.
+     */
+    private void decideVoiced(Random chooser) {
+        if (chooser.nextBoolean()) {
+            for (int i = 0; i < phInv.size(); i++) {
+                String phoneme = phInv.get(i);
+                if (ipaToDescCons(phoneme).contains("Stop")
+                        && !ipaToDescCons(phoneme).contains("Voiced")) {
+                    int index = IPA.indexOf(phoneme);
+                    String newPh = Character.toString(IPA.charAt(index + 1));
+                    phInv.add(index + 1, newPh);
+                }
+            }
+        }
+
+    }
+
+    /**
+     * This method decides what the conlang's syllable structure will be. For simplicity,
+     * syllables must have a vowel nucleus and at least on consonant.
+     * Options include: CV, CVC, CLVC (L = liquid), CVCC
+     */
+    private void decideSyllStruct() {
+
+    }
+
+    /**
+     * This method decides which extra places of articulation to include.
+     * (First try) Decides among the following place's of articulation:
+     * retroflex, palatal, and uvular.
+     */
+    private void decideExtraPOAs() {
+
+    }
+
+    private List<String> ipaToDesc(String ipa) {
+        if ()
+    }
+    /**
+     * This method converts an ipa symbol for a consonant into a full description,
+     * e.g. g --> voiced velar stop
+     * @param ipa
+     * @return
+     */
+    private List<String> ipaToDescCons(String ipa) {
         int index = IPA.indexOf(ipa);
         HashMap<Integer, String> moas = new HashMap();
         moas.put(0, "Stop");
@@ -102,11 +156,14 @@ public class SimplePhonology {
         String place = poas.get(counter2);
         String voicing;
         if (counter2 % 2 == 0) {
-            voicing = "voiceless";
+            voicing = "Voiceless";
         } else {
-            voicing = "voiced";
+            voicing = "Voiced";
         }
-        String description = voicing + place + manner;
+        List<String> description = new ArrayList<>();
+        description.add(voicing);
+        description.add(place);
+        description.add(manner);
         return description;
     }
 }
