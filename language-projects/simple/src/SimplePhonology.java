@@ -11,7 +11,8 @@ public class SimplePhonology {
     // Making this was so tedious -_- ... Maybe there was a smarter way.
     // 0 represents a blank spot.
     private static final Character[][] IPACHART = new Character[][]{
-            {'p', 'b', '0', '0', '0', '0', 't', 'd', '0', '0', 'ʈ',
+            //Consonants start at row 0
+            {'p', 'b', '0', '0', '0', '0', 't', 'd', '0', '0', 'ʈ', // last element here is index 10
                     'ɖ', 'c', 'ɟ', 'k', 'g', 'q', 'ɢ', '0', '0', 'ʔ', '0'},
             {'0', 'm', '0', 'ɱ', '0', '0', '0', 'n', '0', '0', '0',
                     'ɳ', '0', 'ɲ', '0', 'ŋ', '0', 'ɴ', '0', '0', '0', '0'},
@@ -27,6 +28,7 @@ public class SimplePhonology {
                     'ɻ', '0', 'j', '0', 'ɰ', '0', '0', '0', '0', '0', '0'},
             {'0', '0', '0', '0', '0', '0', '0', 'l', '0', '0', '0',
                     'ɭ', '0', 'ʎ', '0', 'ʟ', '0', '0', '0', '0', '0', '0'},
+            //Vowels start at row 8
             {'i', 'y', '0', '0', 'ɨ', 'ʉ', '0', '0', 'ɯ', 'u'},
             {'0', '0', 'ɪ', 'ʏ', '0', '0', '0', 'ʊ', '0', '0'},
             {'e', 'ø', '0', '0', 'ɘ', 'ɵ', '0', '0', 'ɤ', 'o'},
@@ -35,23 +37,6 @@ public class SimplePhonology {
             {'æ', '0', '0', '0', 'ɐ', '0', '0', '0', '0', '0'},
             {'a', 'ɶ', '0', '0', '0', '0', '0', '0', 'ɑ', 'ɒ'}
     };
-
-    /*private static final String IPA =
-            "pb0000td00ʈɖcɟkgqɢ00ʔ0" +
-                    "m0ɱ000n000ɳ0ɲ0ŋ0ɴ00000" +
-                    "ʙ00000r000ɽ00000000000"  +
-                    "000ⱱ000ɾ" +
-                    "ɸβfvθðszʃʒʂʐçʝxɣχʁħʕhɦ" +
-                    "000000ɬɮ00000000000000" +
-                    "000ʋ000ɹ000ɻ0j0ɰ000000" +
-                    "0000000l000ɭ0ʎ0ʟ000000" +
-                    "iy00ɨʉ00ɯu" +
-                    "00ɪʏ000ʊ00" +
-                    "eø00ɘɵ00ɤo" +
-                    "0000ə00000" +
-                    "ɛœ00ɜɞ00ʌɔ" +
-                    "æ000ɐ00000" +
-                    "aɶ000000ɑɒ";*/
 
     public SimplePhonology(int seed) {
         fillBase(); // this is foundation
@@ -139,7 +124,7 @@ public class SimplePhonology {
      */
     private void decideSyllStruct(Random chooser) {
         String[] options = {"CV", "CVC"};
-        syllStruct = options[chooser.nextInt() % 2]; // Maybe use hash map for syllable structure
+        syllStruct = options[chooser.nextInt() % 2]; // (???) Maybe use hash map for syllable structure
     }
 
     /**
@@ -159,6 +144,7 @@ public class SimplePhonology {
 
     private void addExtraConsonants(String poa) {
         HashMap<String, Integer> poaToIndex = new HashMap<>();
+        // Check these numbers
         poaToIndex.put("Retroflex", 10);
         poaToIndex.put("Palatal", 12);
         poaToIndex.put("Uvular", 16);
@@ -174,22 +160,17 @@ public class SimplePhonology {
     }
 
     /**
-     * Adds voiced counterparts to voiceless consonants.
-     */
-    private void addVoiced() {
-        return;
-    }
-
-
-    /**
      * This method adds the retroflex consonants into the phonemic inventory.
      * Start at index 11 in a row of the ipa chart.
      */
-    private void addRetroflexes() {
+    private void addRetroflexes(int poaIndex) {
         for (int i = 0; i < 7; i++) {
-            phInv.add(IPACHART[i][11]);
-            if (voiced) {
-                phInv.add(IPACHART[i][12]);
+            if (!IPACHART[i][poaIndex].equals('0')) {
+                //phInv.add(IPACHART[i][10]);
+                phInv.add(IPACHART[i][poaIndex]);
+                if (voiced) {
+                    phInv.add(IPACHART[i][10]);
+                }
             }
         }
     }
@@ -199,6 +180,13 @@ public class SimplePhonology {
      * palatal fricatives, etc.
      */
     private void addPalatals(){
+        ;
+    }
+
+    /**
+     * Adds voiced counterparts to voiceless consonants.
+     */
+    private void addVoiced() {
         return;
     }
 
@@ -246,31 +234,6 @@ public class SimplePhonology {
         description.add(place);
         description.add(manner);
         return description;
-
-        /*
-        int counter = 0;
-        while (counter * 22 <= index) {
-            counter += 1;
-        }
-        counter -= 1;
-        String manner = moas[counter]; //moas.get(counter);
-        int counter2 = 0;
-        while (counter2 * 2 <= index - counter * 22) {
-            counter2 += 1;
-        }
-        counter2 -= 1;
-        String place = poas[counter2]; //poas.get(counter2);
-        String voicing;
-        if (counter2 % 2 == 0) {
-            voicing = "Voiceless";
-        } else {
-            voicing = "Voiced";
-        }
-        HashSet<String> description = new HashSet<>();
-        description.add(voicing);
-        description.add(place);
-        description.add(manner);
-        return description;*/
     }
 
     private HashSet<String> ipaToDescVowels(Character ipa) {
@@ -294,31 +257,6 @@ public class SimplePhonology {
         description.add(frontness);
         description.add(height);
         return description;
-        /*
-        index -= 154; // CHECK IF THIS NUMBER IS CORRECT
-        int counter = 0;
-        while (counter * 10 <= index) {
-            counter++;
-        }
-        counter -= 1;
-        String height = heights[counter];
-        int counter2 = 0;
-        while (counter2 * 2 <= index - counter * 10) {
-            counter++;
-        }
-        counter2 -= 1;
-        String frontness = frontnesses[counter2];
-        String roundness;
-        if ((index - counter * 10) % 2 == 0) {
-            roundness = "Rounded";
-        } else {
-            roundness = "Unrounded";
-        }
-        HashSet<String> description = new HashSet<>();
-        description.add(roundness);
-        description.add(frontness);
-        description.add(height);
-        return description;*/
     }
 
     /**
