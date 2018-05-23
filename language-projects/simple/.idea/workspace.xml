@@ -15,8 +15,8 @@
       <file leaf-file-name="SimplePhonology.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SimplePhonology.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="214" column="30" lean-forward="false" selection-start-line="214" selection-start-column="30" selection-end-line="214" selection-end-column="30" />
+            <state relative-caret-position="170">
+              <caret line="333" column="51" lean-forward="false" selection-start-line="333" selection-start-column="51" selection-end-line="333" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -83,9 +83,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="73" />
     <option name="y" value="23" />
-    <option name="width" value="1607" />
+    <option name="width" value="1680" />
     <option name="height" value="917" />
   </component>
   <component name="ProjectView">
@@ -267,15 +266,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestSimplePhonology_testIPAToDesc - 2018.05.23 at 14h 14m 44s.xml">
-      <configuration name="TestSimplePhonology.testIPAToDesc" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestSimplePhonology_testIPAToDesc - 2018.05.23 at 14h 19m 41s.xml">
-      <configuration name="TestSimplePhonology.testIPAToDesc" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestSimplePhonology_testIPAToDesc - 2018.05.23 at 14h 20m 08s.xml">
-      <configuration name="TestSimplePhonology.testIPAToDesc" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TestSimplePhonology_testIPAToDesc - 2018.05.23 at 14h 20m 19s.xml">
       <configuration name="TestSimplePhonology.testIPAToDesc" configurationId="JUnit" />
     </history-entry>
@@ -297,9 +287,18 @@
     <history-entry file="TestSimplePhonology_testIPAToDesc - 2018.05.23 at 14h 21m 46s.xml">
       <configuration name="TestSimplePhonology.testIPAToDesc" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TestSimplePhonology_testIPAToDesc - 2018.05.23 at 14h 46m 05s.xml">
+      <configuration name="TestSimplePhonology.testIPAToDesc" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestSimplePhonology_testIPAToDesc - 2018.05.23 at 14h 46m 56s.xml">
+      <configuration name="TestSimplePhonology.testIPAToDesc" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestSimplePhonology_testIPAToDesc - 2018.05.23 at 14h 47m 34s.xml">
+      <configuration name="TestSimplePhonology.testIPAToDesc" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="73" y="23" width="1607" height="917" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="917" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -310,18 +309,18 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289941" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289941" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Style Checker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26135656" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -336,9 +335,32 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="i == 9 || j == 9" language="JAVA" />
+          <url>file://$PROJECT_DIR$/src/SimplePhonology.java</url>
+          <line>334</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>i == 9 || j == 9</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>i == 9</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Consonants.java" />
@@ -376,8 +398,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SimplePhonology.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="214" column="30" lean-forward="false" selection-start-line="214" selection-start-column="30" selection-end-line="214" selection-end-column="30" />
+        <state relative-caret-position="170">
+          <caret line="333" column="51" lean-forward="false" selection-start-line="333" selection-start-column="51" selection-end-line="333" selection-end-column="51" />
           <folding />
         </state>
       </provider>

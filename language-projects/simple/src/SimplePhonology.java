@@ -11,7 +11,6 @@ public class SimplePhonology {
     // Making this was so tedious -_- ... Maybe there was a smarter way.
     // 0 represents a blank spot.
     private static final Character[][] IPACHART = new Character[][]{
-            //Consonants Below
             {'p', 'b', '0', '0', '0', '0', 't', 'd', '0', '0', 'ʈ',
                     'ɖ', 'c', 'ɟ', 'k', 'g', 'q', 'ɢ', '0', '0', 'ʔ', '0'},
             {'0', 'm', '0', 'ɱ', '0', '0', '0', 'n', '0', '0', '0',
@@ -28,7 +27,6 @@ public class SimplePhonology {
                     'ɻ', '0', 'j', '0', 'ɰ', '0', '0', '0', '0', '0', '0'},
             {'0', '0', '0', '0', '0', '0', '0', 'l', '0', '0', '0',
                     'ɭ', '0', 'ʎ', '0', 'ʟ', '0', '0', '0', '0', '0', '0'},
-            //Vowels Below
             {'i', 'y', '0', '0', 'ɨ', 'ʉ', '0', '0', 'ɯ', 'u'},
             {'0', '0', 'ɪ', 'ʏ', '0', '0', '0', 'ʊ', '0', '0'},
             {'e', 'ø', '0', '0', 'ɘ', 'ɵ', '0', '0', 'ɤ', 'o'},
@@ -333,7 +331,8 @@ public class SimplePhonology {
         int row = 0;
         int col = 0;
         for (int i = 0; i < IPACHART.length; i++) {
-            for (int j = 0; j < IPACHART[0].length; j++) {
+            int lastColumnNum = IPACHART[i].length;
+            for (int j = 0; j < lastColumnNum; j++) {
                 if (IPACHART[i][j].equals(ipa)) {
                     row = i;
                     col = j;
