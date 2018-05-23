@@ -73,6 +73,7 @@ public class Vowel {
     }
 
     private String ipaToDesc(String ipa) {
-
+        int i = 0;
+        return "ass";
     }
 }
