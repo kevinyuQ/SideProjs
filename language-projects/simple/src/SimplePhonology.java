@@ -1,14 +1,29 @@
 import java.util.*;
 
 public class SimplePhonology {
-    private List<Character> phInv;
+    private HashSet<Character> phInv;
     private Double SEED;
-    private List<String> secArts;
+    private boolean voiced;
+    private HashSet<String> poas;
 
-    private static final Character[][] IPA1 = new Character[][]{
-            {'p', 'b', null, null, null, null, 't', 'd', null, null, 'ʈ', 'ɖ', 'c', 'ɟ', 'k', 'g', 'q', 'ɢ', null, null, 'ʔ', null},
-            {2,3}
+    // Making this was so tedious -_- ... Maybe there was a smarter way.
+    private static final Character[][] IPACHART = new Character[][]{
+            {'p', 'b', '0', '0', '0', '0', 't', 'd', '0', '0', 'ʈ', 'ɖ', 'c', 'ɟ', 'k', 'g', 'q', 'ɢ', '0', '0', 'ʔ', '0'},
+            {'m', '0', 'ɱ', '0', '0', '0', 'n', '0', '0', '0', 'ɳ', '0', 'ɲ', '0', 'ŋ', '0', 'ɴ', '0', '0', '0', '0', '0'},
+            {'ʙ', '0', '0', '0', '0', '0', 'r', '0', '0', '0', 'ɽ', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+            {'ɸ', 'β', 'f', 'v', 'θ', 'ð', 's', 'z', 'ʃ', 'ʒ', 'ʂ', 'ʐ', 'ç', 'ʝ', 'x', 'ɣ', 'χ', 'ʁ', 'ħ', 'ʕ', 'h', 'ɦ'},
+            {'0', '0', '0', '0', '0', '0', 'ɬ', 'ɮ', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+            {'0', '0', '0', 'ʋ', '0', '0', '0', 'ɹ', '0', '0', '0', 'ɻ', '0', 'j', '0', 'ɰ', '0', '0', '0', '0', '0', '0'},
+            {'0', '0', '0', '0', '0', '0', '0', 'l', '0', '0', '0', 'ɭ', '0', 'ʎ', '0', 'ʟ', '0', '0', '0', '0', '0', '0'},
+            {'i', 'y', '0', '0', 'ɨ', 'ʉ', '0', '0', 'ɯ', 'u'},
+            {'0', '0', 'ɪ', 'ʏ', '0', '0', '0', 'ʊ', '0', '0'},
+            {'e', 'ø', '0', '0', 'ɘ', 'ɵ', '0', '0', 'ɤ', 'o'},
+            {'0', '0', '0', '0', 'ə', '0', '0', '0', '0', '0'},
+            {'ɛ', 'œ', '0', '0', 'ɜ', 'ɞ', '0', '0', 'ʌ', 'ɔ'},
+            {'æ', '0', '0', '0', 'ɐ', '0', '0', '0', '0', '0'},
+            {'a', 'ɶ', '0', '0', '0', '0', '0', '0', 'ɑ', 'ɒ'}
     };
+
     private static final String IPA =
             "pb0000td00ʈɖcɟkgqɢ00ʔ0" +
                     "m0ɱ000n000ɳ0ɲ0ŋ0ɴ00000" +
@@ -36,6 +51,13 @@ public class SimplePhonology {
      * in the languages. This phonemic inventory acts as the basis for the language.
      */
     private void fillBase() {
+        // First add initial poas
+        poas.add("Bilabial");
+        poas.add("Alveolar");
+        poas.add("Velar");
+        // Then initialize voicing.
+        voiced = false;
+        // Add the first phonemes
         phInv.add('p');
         phInv.add('t');
         phInv.add('k');
@@ -56,7 +78,7 @@ public class SimplePhonology {
      * It chooses among the remaining places of articulation (labiodental, dental, retroflex, etc.).
      */
     private void addExtra(Random chooser) {
-        decideCharacterisitics();
+        decideCharacterisitics(chooser);
 
     }
 
@@ -69,26 +91,39 @@ public class SimplePhonology {
      * 4. Which places of articulation to include besides those in the base inventory.
      */
     private void decideCharacterisitics(Random chooser) {
-        decideExtraPOAs();
+        decideExtraPOAs(chooser);
         decideVoiced(chooser);
         decideAspirated();
         decideSyllStruct();
     }
 
     /**
+     * This method decides which extra places of articulation to include.
+     * (First try) Decides among the following place's of articulation:
+     * retroflex, palatal, and uvular.
+     */
+    private void decideExtraPOAs(Random chooser) {
+        String[] options = {"Retroflex", "Palatal", "Uvular"};
+        while (chooser.nextInt() % 3 != 0) {
+            poas.add(options[chooser.nextInt() % 3]);
+        }
+    }
+
+    /**
      * This method decides whether or not to include voiced stops and fricatives.
      */
     private void decideVoiced(Random chooser) {
-        if (chooser.nextBoolean()) {
-            for (int i = 0; i < phInv.size(); i++) {
-                String phoneme = phInv.get(i);
-                if (ipaToDescCons(phoneme).contains("Stop")
+        voiced = chooser.nextBoolean();
+        /*if (chooser.nextBoolean()) {*/
+            /*for (int i = 0; i < phInv.size(); i++) {
+                Character phoneme = phInv.get(i);
+                if (ipaToDesc(phoneme).contains("Stop") || ipaToDesc(phoneme).contains("Fricative")
                         && !ipaToDescCons(phoneme).contains("Voiced")) {
                     int index = IPA.indexOf(phoneme);
-                    String newPh = Character.toString(IPA.charAt(index + 1));
+                    Character newPh = IPA.charAt(index + 1);
                     phInv.add(index + 1, newPh);
                 }
-            }
+            }*/
         }
 
     }
@@ -98,17 +133,22 @@ public class SimplePhonology {
      * syllables must have a vowel nucleus and at least on consonant.
      * Options include: CV, CVC, CLVC (L = liquid), CVCC
      */
-    private void decideSyllStruct() {
-
+    private void decideSyllStruct(Random chooser) {
+        String[] options = {"CV", "CVC"};
+        syllStruct = options[chooser.nextInt() % 2]; // Maybe use hash map for syllable structure
     }
 
     /**
-     * This method decides which extra places of articulation to include.
-     * (First try) Decides among the following place's of articulation:
-     * retroflex, palatal, and uvular.
+     * This method adds the retroflex consonants into the phonemic inventory.
+     * Start at index 11 in a row of the ipa chart.
      */
-    private void decideExtraPOAs() {
-
+    private void addRetroflexes() {
+        for (int i = 0; i < 7; i++) {
+            phInv.add(IPACHART[i][11]);
+            if (voiced) {
+                phInv.add(IPACHART[i][12]);
+            }
+        }
     }
 
     private HashSet<String> ipaToDesc(Character ipa) {
