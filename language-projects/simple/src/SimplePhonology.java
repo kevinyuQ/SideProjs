@@ -5,6 +5,10 @@ public class SimplePhonology {
     private Double SEED;
     private List<String> secArts;
 
+    private static final Character[][] IPA1 = new Character[][]{
+            {'p', 'b', null, null, null, null, 't', 'd', null, null, 'ʈ', 'ɖ', 'c', 'ɟ', 'k', 'g', 'q', 'ɢ', null, null, 'ʔ', null},
+            {2,3}
+    };
     private static final String IPA =
             "pb0000td00ʈɖcɟkgqɢ00ʔ0" +
                     "m0ɱ000n000ɳ0ɲ0ŋ0ɴ00000" +
