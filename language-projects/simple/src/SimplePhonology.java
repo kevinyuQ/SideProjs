@@ -5,6 +5,8 @@ public class SimplePhonology {
     private Double SEED;
     private boolean voiced;
     private HashSet<String> poas;
+    private int aspiration;
+    private String syllStruct;
 
     // Making this was so tedious -_- ... Maybe there was a smarter way.
     private static final Character[][] IPACHART = new Character[][]{
@@ -43,7 +45,7 @@ public class SimplePhonology {
     public SimplePhonology(int seed) {
         fillBase(); // this is foundation
         Random chooser = new Random(seed);
-        addExtra(chooser); // now add in the extra features
+        decideCharacterisitics(chooser); // now add in the extra features
     }
 
     /**
@@ -73,16 +75,6 @@ public class SimplePhonology {
     }
 
     /**
-     * This method creates a phonetic inventory for the language. This method
-     * destructively modifies the phonemic inventory after the base has been added in.
-     * It chooses among the remaining places of articulation (labiodental, dental, retroflex, etc.).
-     */
-    private void addExtra(Random chooser) {
-        decideCharacterisitics(chooser);
-
-    }
-
-    /**
      * This method decides the characteristics of the conlang.
      * Decides the following characteristics:
      * 1. Has voiced consonants (voiced stops, voiced affricates, and voiced fricatives)
@@ -93,8 +85,8 @@ public class SimplePhonology {
     private void decideCharacterisitics(Random chooser) {
         decideExtraPOAs(chooser);
         decideVoiced(chooser);
-        decideAspirated();
-        decideSyllStruct();
+        decideAspirated(chooser);
+        decideSyllStruct(chooser);
     }
 
     /**
@@ -104,7 +96,7 @@ public class SimplePhonology {
      */
     private void decideExtraPOAs(Random chooser) {
         String[] options = {"Retroflex", "Palatal", "Uvular"};
-        while (chooser.nextInt() % 3 != 0) {
+        while (chooser.nextInt() % 2 != 0) {
             poas.add(options[chooser.nextInt() % 3]);
         }
     }
@@ -124,8 +116,14 @@ public class SimplePhonology {
                     phInv.add(index + 1, newPh);
                 }
             }*/
-        }
+    }
 
+    /**
+     * This method decides whether or not to include aspirated plosives.
+     * @param chooser a pseudo-random generator that decides what will get chosen.
+     */
+    private void decideAspirated(Random chooser) {
+        aspiration = chooser.nextInt() % 10;
     }
 
     /**
