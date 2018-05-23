@@ -286,7 +286,7 @@ public class SimplePhonology {
         String[] roundnessOptions = new String[]{"Unrounded", "Rounded"};
         int row = location[0];
         int col = location[1];
-        String height = heights[row - 9];
+        String height = heights[row - 8];
         String frontness = frontnesses[col / 2];
         String roundness = roundnessOptions[col % 2];
         HashSet<String> description = new HashSet<>();
