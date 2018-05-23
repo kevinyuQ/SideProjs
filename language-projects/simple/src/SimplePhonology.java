@@ -113,6 +113,12 @@ public class SimplePhonology {
      * @param chooser a pseudo-random generator that decides what will get chosen.
      */
     private void decideAspirated(Random chooser) {
+        /*
+        OPTIONS:
+        voiceless unaspirated and voiced unaspirated (0 - 3)
+        voiceless aspirated and voiced unaspirated (4 - 7)
+        voiceless aspirated and voiced aspirated (8 - 9)
+         */
         aspiration = chooser.nextInt() % 10;
     }
 
@@ -137,18 +143,27 @@ public class SimplePhonology {
         for (String poa : poas) {
             addExtraConsonants(poa);
         }
-        if (voiced) addVoiced();
-        //if (aspiration) addAspirated();
-
+        /*if (aspiration >= 4 && aspiration <= 7) {
+            addAspirated("Voiceless");
+        } else if (aspiration >= 8 && aspiration <= 9) {
+            addAspirated("Both");
+        }*/
     }
 
+    /**
+     * This method adds extra consonants for a particular place of articulation.
+     * @param poa
+     */
     private void addExtraConsonants(String poa) {
         HashMap<String, Integer> poaToIndex = new HashMap<>();
         // Check these numbers
+        poaToIndex.put("Bilabial", 0);
+        poaToIndex.put("Alveolar", 6);
         poaToIndex.put("Retroflex", 10);
         poaToIndex.put("Palatal", 12);
+        poaToIndex.put("Velar", 14);
         poaToIndex.put("Uvular", 16);
-        if (poa.equals("Retroflex")) {
+        /*if (poa.equals("Retroflex")) {
             addRetroflexes();
         } else if (poa.equals("Palatal")) {
             addPalatals();
@@ -156,45 +171,39 @@ public class SimplePhonology {
             addUvulars();
         } else {
             return;
-        }
+        }*/
+        addConsonants(poaToIndex.get(poa));
     }
 
     /**
      * This method adds the retroflex consonants into the phonemic inventory.
      * Start at index 11 in a row of the ipa chart.
      */
-    private void addRetroflexes(int poaIndex) {
+    private void addConsonants(int poaIndex) {
         for (int i = 0; i < 7; i++) {
             if (!IPACHART[i][poaIndex].equals('0')) {
                 //phInv.add(IPACHART[i][10]);
                 phInv.add(IPACHART[i][poaIndex]);
                 if (voiced) {
-                    phInv.add(IPACHART[i][10]);
+                    phInv.add(IPACHART[i][poaIndex + 1]);
+                }
+                if (aspiration >= 4 && aspiration <= 7) {
+                    phInv.add()
                 }
             }
         }
     }
 
     /**
-     * This method adds the palatal consonants, including the palatal stops,
-     * palatal fricatives, etc.
+     * This method adds aspirated consonants depending on what value
+     * aspiration holds.
      */
-    private void addPalatals(){
-        ;
-    }
+    private void addAspirated() {
+        if (aspiration <= 3) {
+            return;
+        } else if (aspiration <= 7) {
 
-    /**
-     * Adds voiced counterparts to voiceless consonants.
-     */
-    private void addVoiced() {
-        return;
-    }
-
-    /**
-     * This method adds the uvular consonants, including the uvular stops, etc.
-     */
-    private void addUvulars() {
-        return;
+        }
     }
 
     HashSet<String> ipaToDesc(Character ipa) {
