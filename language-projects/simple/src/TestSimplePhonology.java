@@ -24,11 +24,11 @@ public class TestSimplePhonology {
      * Create multiple phonemic inventories, and use multiple different seeds.
      *
      * Here are seeds that I think are kinda cool:
-     * 1234, 36
+     * 1234, 36, 3342 (<--)
      */
     @Test (timeout = 1000)
     public void testPhonemicInventory () {
-        SimplePhonology tester = new SimplePhonology(9999); // I kinda like 1234's phonemic inv.
+        SimplePhonology tester = new SimplePhonology(3342); // I kinda like 1234's phonemic inv.
         String[][] consonants = tester.consonantGrid();
         //DOES NOT INCLUDE ASPIRATED CONSONANTS
         for (int i = 0; i < consonants.length; i++) {
