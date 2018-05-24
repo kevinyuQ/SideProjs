@@ -171,8 +171,12 @@ public class SimplePhonology {
      */
     private void addConsonants(int poaIndex) {
         for (int i = 0; i < 7; i++) {
-            if (!IPACHART[i][poaIndex].equals("0")) {
-                //phInv.add(IPACHART[i][10]);
+            Random probabilityChooser = new Random();
+            int probability = 100;
+            if (i > 0 && (poaIndex == 0 || poaIndex == 6 || poaIndex == 14)) {
+                probability -= Math.abs(probabilityChooser.nextInt()) % 150;
+            }
+            if (!IPACHART[i][poaIndex].equals("0") && probability > 50) {
                 phInv.add(IPACHART[i][poaIndex]);
                 if (voiced) {
                     phInv.add(IPACHART[i][poaIndex + 1]);
@@ -181,7 +185,9 @@ public class SimplePhonology {
                     phInv.add(IPACHART[i][poaIndex] + "ʰ");
                 } else if (aspiration >= 8 && aspiration <= 9 && i == 0) {
                     phInv.add(IPACHART[i][poaIndex] + "ʰ");
-                    phInv.add(IPACHART[i][poaIndex + 1] + "ʰ");
+                    if (voiced) {
+                        phInv.add(IPACHART[i][poaIndex + 1] + "ʰ");
+                    }
                 }
             }
         }
