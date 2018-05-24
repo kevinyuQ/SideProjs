@@ -170,14 +170,20 @@ public class SimplePhonology {
      * Start at index 11 in a row of the ipa chart.
      */
     private void addConsonants(int poaIndex) {
+        int index = poaIndex;
         for (int i = 0; i < 7; i++) {
+            if (i == 1 || i == 2 || i == 3 || i == 6 || i == 7) {
+                index = poaIndex + 1;
+            } else {
+                index = poaIndex;
+            }
             Random probabilityChooser = new Random();
             int probability = 100;
             if (i > 0 && (poaIndex == 0 || poaIndex == 6 || poaIndex == 14)) {
                 probability -= Math.abs(probabilityChooser.nextInt()) % 150;
             }
-            if (!IPACHART[i][poaIndex].equals("0") && probability > 50) {
-                phInv.add(IPACHART[i][poaIndex]);
+            if (!IPACHART[i][index].equals("0") && probability > 50) {
+                phInv.add(IPACHART[i][index]);
                 if (voiced) {
                     phInv.add(IPACHART[i][poaIndex + 1]);
                 }
@@ -308,6 +314,15 @@ public class SimplePhonology {
     }
 
     /**
+     * This method will be used for word generation. It returns the language's
+     * syllable structure.
+     * @return a string representing the language's syllable structure.
+     */
+    public String getSyllStruct() {
+        return syllStruct;
+    }
+
+    /**
      * This method is more for the purpose of testing. It takes the phonemic inventory and creates
      * a chart similar to the IPACHART above. This chart contains the consonants.
      *
@@ -328,7 +343,7 @@ public class SimplePhonology {
     }
 
     /**
-     * This method returns the vowels in a grid.
+     * This method is more for the purpose of testing. This method returns the vowels in a grid.
      * @return a 2d representation of the vowels in the language.
      */
     String[][] vowelGrid() {
