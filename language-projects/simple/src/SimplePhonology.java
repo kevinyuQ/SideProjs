@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class SimplePhonology {
-    private HashSet<Character> phInv = new HashSet<>();
+    private HashSet<String> phInv = new HashSet<>();
     private Double SEED;
     private boolean voiced;
     private HashSet<String> poas = new HashSet<>();
@@ -10,32 +10,32 @@ public class SimplePhonology {
 
     // Making this was so tedious -_- ... Maybe there was a smarter way.
     // 0 represents a blank spot.
-    private static final Character[][] IPACHART = new Character[][]{
+    private static final String[][] IPACHART = new String[][]{
             //Consonants start at row 0
-            {'p', 'b', '0', '0', '0', '0', 't', 'd', '0', '0', 'ʈ', // last element here is index 10
-                    'ɖ', 'c', 'ɟ', 'k', 'g', 'q', 'ɢ', '0', '0', 'ʔ', '0'},
-            {'0', 'm', '0', 'ɱ', '0', '0', '0', 'n', '0', '0', '0',
-                    'ɳ', '0', 'ɲ', '0', 'ŋ', '0', 'ɴ', '0', '0', '0', '0'},
-            {'0', 'ʙ', '0', '0', '0', '0', '0', 'r', '0', '0', '0',
-                    'ɽ', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
-            {'0', '0', '0', 'ⱱ', '0', '0', '0', 'ɾ', '0', '0', '0',
-                    'ɽ', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
-            {'ɸ', 'β', 'f', 'v', 'θ', 'ð', 's', 'z', 'ʃ', 'ʒ', 'ʂ',
-                    'ʐ', 'ç', 'ʝ', 'x', 'ɣ', 'χ', 'ʁ', 'ħ', 'ʕ', 'h', 'ɦ'},
-            {'0', '0', '0', '0', '0', '0', 'ɬ', 'ɮ', '0', '0', '0',
-                    '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
-            {'0', '0', '0', 'ʋ', '0', '0', '0', 'ɹ', '0', '0', '0',
-                    'ɻ', '0', 'j', '0', 'ɰ', '0', '0', '0', '0', '0', '0'},
-            {'0', '0', '0', '0', '0', '0', '0', 'l', '0', '0', '0',
-                    'ɭ', '0', 'ʎ', '0', 'ʟ', '0', '0', '0', '0', '0', '0'},
+            {"p", "b", "0", "0", "0", "0", "t", "d", "0", "0", "ʈ", // last element here is index 10
+                    "ɖ", "c", "ɟ", "k", "g", "q", "ɢ", "0", "0", "ʔ", "0"},
+            {"0", "m", "0", "ɱ", "0", "0", "0", "n", "0", "0", "0",
+                    "ɳ", "0", "ɲ", "0", "ŋ", "0", "ɴ", "0", "0", "0", "0"},
+            {"0", "ʙ", "0", "0", "0", "0", "0", "r", "0", "0", "0",
+                    "ɽ", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
+            {"0", "0", "0", "ⱱ", "0", "0", "0", "ɾ", "0", "0", "0",
+                    "ɽ", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
+            {"ɸ", "β", "f", "v", "θ", "ð", "s", "z", "ʃ", "ʒ", "ʂ",
+                    "ʐ", "ç", "ʝ", "x", "ɣ", "χ", "ʁ", "ħ", "ʕ", "h", "ɦ"},
+            {"0", "0", "0", "0", "0", "0", "ɬ", "ɮ", "0", "0", "0",
+                    "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
+            {"0", "0", "0", "ʋ", "0", "0", "0", "ɹ", "0", "0", "0",
+                    "ɻ", "0", "j", "0", "ɰ", "0", "0", "0", "0", "0", "0"},
+            {"0", "0", "0", "0", "0", "0", "0", "l", "0", "0", "0",
+                    "ɭ", "0", "ʎ", "0", "ʟ", "0", "0", "0", "0", "0", "0"},
             //Vowels start at row 8
-            {'i', 'y', '0', '0', 'ɨ', 'ʉ', '0', '0', 'ɯ', 'u'},
-            {'0', '0', 'ɪ', 'ʏ', '0', '0', '0', 'ʊ', '0', '0'},
-            {'e', 'ø', '0', '0', 'ɘ', 'ɵ', '0', '0', 'ɤ', 'o'},
-            {'0', '0', '0', '0', 'ə', '0', '0', '0', '0', '0'},
-            {'ɛ', 'œ', '0', '0', 'ɜ', 'ɞ', '0', '0', 'ʌ', 'ɔ'},
-            {'æ', '0', '0', '0', 'ɐ', '0', '0', '0', '0', '0'},
-            {'a', 'ɶ', '0', '0', '0', '0', '0', '0', 'ɑ', 'ɒ'}
+            {"i", "y", "0", "0", "ɨ", "ʉ", "0", "0", "ɯ", "u"},
+            {"0", "0", "ɪ", "ʏ", "0", "0", "0", "ʊ", "0", "0"},
+            {"e", "ø", "0", "0", "ɘ", "ɵ", "0", "0", "ɤ", "o"},
+            {"0", "0", "0", "0", "ə", "0", "0", "0", "0", "0"},
+            {"ɛ", "œ", "0", "0", "ɜ", "ɞ", "0", "0", "ʌ", "ɔ"},
+            {"æ", "0", "0", "0", "ɐ", "0", "0", "0", "0", "0"},
+            {"a", "ɶ", "0", "0", "0", "0", "0", "0", "ɑ", "ɒ"}
     };
 
     public SimplePhonology(int seed) {
@@ -56,18 +56,18 @@ public class SimplePhonology {
         // Then initialize voicing.
         voiced = false;
         // Add the first phonemes
-        phInv.add('p');
-        phInv.add('t');
-        phInv.add('k');
-        phInv.add('m');
-        phInv.add('n');
-        phInv.add('ŋ');
-        phInv.add('j');
-        phInv.add('w');
-        phInv.add('s');
-        phInv.add('i');
-        phInv.add('u');
-        phInv.add('a');
+        phInv.add("p");
+        phInv.add("t");
+        phInv.add("k");
+        phInv.add("m");
+        phInv.add("n");
+        phInv.add("ŋ");
+        phInv.add("j");
+        phInv.add("w");
+        phInv.add("s");
+        phInv.add("i");
+        phInv.add("u");
+        phInv.add("a");
     }
 
     /**
@@ -89,7 +89,7 @@ public class SimplePhonology {
     /**
      * FIRST
      * This method decides which extra places of articulation to include.
-     * (First try) Decides among the following place's of articulation:
+     * (First try) Decides among the following place"s of articulation:
      * retroflex, palatal, and uvular.
      */
     private void decideExtraPOAs(Random chooser) {
@@ -124,7 +124,7 @@ public class SimplePhonology {
 
     /**
      * FOURTH
-     * This method decides what the conlang's syllable structure will be. For simplicity,
+     * This method decides what the conlang"s syllable structure will be. For simplicity,
      * syllables must have a vowel nucleus and at least on consonant.
      * Options include: CV, CVC, CLVC (L = liquid), CVCC
      */
@@ -181,7 +181,7 @@ public class SimplePhonology {
      */
     private void addConsonants(int poaIndex) {
         for (int i = 0; i < 7; i++) {
-            if (!IPACHART[i][poaIndex].equals('0')) {
+            if (!IPACHART[i][poaIndex].equals("0")) {
                 //phInv.add(IPACHART[i][10]);
                 phInv.add(IPACHART[i][poaIndex]);
                 if (voiced) {
