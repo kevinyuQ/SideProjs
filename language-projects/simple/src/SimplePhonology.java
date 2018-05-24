@@ -322,6 +322,26 @@ public class SimplePhonology {
         return syllStruct;
     }
 
+    public List<String> getConsonants() {
+        List<String> consonants = new ArrayList<>();
+        for (String p : phInv) {
+            if (ipaToDesc(p).contains("Vowel")) {
+                consonants.add(p);
+            }
+        }
+        return consonants;
+    }
+
+    public List<String> getVowels() {
+        List<String> vowels = new ArrayList<>();
+        for (String p : phInv) {
+            if (ipaToDesc(p).contains("Vowel")) {
+                vowels.add(p);
+            }
+        }
+        return vowels;
+    }
+
     /**
      * This method is more for the purpose of testing. It takes the phonemic inventory and creates
      * a chart similar to the IPACHART above. This chart contains the consonants.
