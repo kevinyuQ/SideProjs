@@ -28,7 +28,7 @@ public class TestSimplePhonology {
      */
     @Test (timeout = 1000)
     public void testPhonemicInventory () {
-        SimplePhonology tester = new SimplePhonology(234); // I kinda like 1234's phonemic inv.
+        SimplePhonology tester = new SimplePhonology(344400); // I kinda like 1234's phonemic inv.
         String[][] consonants = tester.consonantGrid();
         //DOES NOT INCLUDE ASPIRATED CONSONANTS
         for (int i = 0; i < consonants.length; i++) {

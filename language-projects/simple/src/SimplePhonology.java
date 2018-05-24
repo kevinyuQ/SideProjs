@@ -325,7 +325,7 @@ public class SimplePhonology {
     public List<String> getConsonants() {
         List<String> consonants = new ArrayList<>();
         for (String p : phInv) {
-            if (ipaToDesc(p).contains("Vowel")) {
+            if (!ipaToDesc(p).contains("Vowel")) {
                 consonants.add(p);
             }
         }
