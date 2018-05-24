@@ -95,7 +95,7 @@ public class SimplePhonology {
     private void decideExtraPOAs(Random chooser) {
         String[] options = {"Retroflex", "Palatal", "Uvular"};
         while (chooser.nextInt() % 2 != 0) {
-            poas.add(options[chooser.nextInt() % 3]);
+            poas.add(options[Math.abs(chooser.nextInt()) % 3]);
         }
     }
 
@@ -110,6 +110,7 @@ public class SimplePhonology {
     /**
      * THIRD
      * This method decides whether or not to include aspirated plosives.
+     *
      * @param chooser a pseudo-random generator that decides what will get chosen.
      */
     private void decideAspirated(Random chooser) {
@@ -130,13 +131,14 @@ public class SimplePhonology {
      */
     private void decideSyllStruct(Random chooser) {
         String[] options = {"CV", "CVC"};
-        syllStruct = options[chooser.nextInt() % 2]; // (???) Maybe use hash map for syllable structure
+        syllStruct = options[Math.abs(chooser.nextInt()) % 2]; // (???) Maybe use hash map for syllable structure
     }
 
     /**
      * FIFTH
      * This method adds the extra phonemes that were not originally included in the intial phonemic
      * inventory.
+     *
      * @param chooser
      */
     private void addExtra(Random chooser) {
@@ -144,15 +146,11 @@ public class SimplePhonology {
             addExtraConsonants(poa);
         }
         addVowels(chooser);
-        /*if (aspiration >= 4 && aspiration <= 7) {
-            addAspirated("Voiceless");
-        } else if (aspiration >= 8 && aspiration <= 9) {
-            addAspirated("Both");
-        }*/
     }
 
     /**
      * This method adds extra consonants for a particular place of articulation.
+     *
      * @param poa
      */
     private void addExtraConsonants(String poa) {
@@ -164,15 +162,6 @@ public class SimplePhonology {
         poaToIndex.put("Palatal", 12);
         poaToIndex.put("Velar", 14);
         poaToIndex.put("Uvular", 16);
-        /*if (poa.equals("Retroflex")) {
-            addRetroflexes();
-        } else if (poa.equals("Palatal")) {
-            addPalatals();
-        } else if (poa.equals("Uvular")) {
-            addUvulars();
-        } else {
-            return;
-        }*/
         addConsonants(poaToIndex.get(poa));
     }
 
@@ -188,9 +177,9 @@ public class SimplePhonology {
                 if (voiced) {
                     phInv.add(IPACHART[i][poaIndex + 1]);
                 }
-                if (aspiration >= 4 && aspiration <= 7) {
+                if (aspiration >= 4 && aspiration <= 7 && i == 0) {
                     phInv.add(IPACHART[i][poaIndex] + "ʰ");
-                } else if (aspiration >= 8 && aspiration <= 9) {
+                } else if (aspiration >= 8 && aspiration <= 9 && i == 0) {
                     phInv.add(IPACHART[i][poaIndex] + "ʰ");
                     phInv.add(IPACHART[i][poaIndex + 1] + "ʰ");
                 }
@@ -200,11 +189,12 @@ public class SimplePhonology {
 
     /**
      * Adds new vowels into the phonemic inventory.
+     *
      * @param chooser
      */
     private void addVowels(Random chooser) {
         int withoutNewVowelsSize = phInv.size();
-        while (chooser.nextInt() % 6 != 0 || phInv.size() < withoutNewVowelsSize + 9) {
+        while (chooser.nextInt() % 6 != 0 || phInv.size() < withoutNewVowelsSize + 3) {
             int vowelRow = chooser.nextInt(7) + 8;
             int vowelCol = chooser.nextInt(10);
             String newVowel = IPACHART[vowelRow][vowelCol];
@@ -214,33 +204,22 @@ public class SimplePhonology {
         }
     }
 
-
-    /**
-     * This method adds aspirated consonants depending on what value
-     * aspiration holds.
-     */
-    /*private void addAspirated() {
-        if (aspiration <= 3) {
-            return;
-        } else if (aspiration <= 7) {
-
-        }
-    }*/
-
-    HashSet<String> ipaToDesc(Character ipa) {
+    HashSet<String> ipaToDesc(String ipa) {
         if (locate(ipa)[0] < 8) {
             return ipaToDescCons(ipa);
         } else {
             return ipaToDescVowels(ipa);
         }
     }
+
     /**
      * This method converts an ipa symbol for a consonant into a full description,
      * e.g. g --> voiced velar stop
+     *
      * @param ipa
      * @return
      */
-    private HashSet<String> ipaToDescCons(Character ipa) {
+    private HashSet<String> ipaToDescCons(String ipa) {
         int[] location = locate(ipa); //IPA.indexOf(ipa);
         String[] moas = new String[]{
                 "Stop", "Nasal", "Trill",
@@ -266,7 +245,7 @@ public class SimplePhonology {
         return description;
     }
 
-    private HashSet<String> ipaToDescVowels(Character ipa) {
+    private HashSet<String> ipaToDescVowels(String ipa) {
         int[] location = locate(ipa); //IPA.indexOf(ipa);
         String[] heights = new String[]{
                 "High", "Near-close", "Close-mid", "Mid",
@@ -286,16 +265,18 @@ public class SimplePhonology {
         description.add(roundness);
         description.add(frontness);
         description.add(height);
+        description.add("Vowel");
         return description;
     }
 
     /**
      * For a particular speech sound ipa, this method returns an array giving the
      * row and column in which that ipa symbol appears.
+     *
      * @param ipa the speech sound to be located
      * @return an array, first element is row, second element is column
      */
-    private int[] locate(Character ipa) {
+    private int[] locate(String ipa) {
         int row = 0;
         int col = 0;
         for (int i = 0; i < IPACHART.length; i++) {
@@ -309,5 +290,52 @@ public class SimplePhonology {
             }
         }
         return new int[]{row, col};
+    }
+
+    /**
+     * Returns the language's phonemic inventory.
+     *
+     * @return the phonemic inventory.
+     */
+    public HashSet<String> getPhInv() {
+        return phInv;
+    }
+
+    /**
+     * This method is more for the purpose of testing. It takes the phonemic inventory and creates
+     * a chart similar to the IPACHART above. This chart contains the consonants.
+     *
+     * @return a 2d representation of the language's consonant inventory.
+     */
+    String[][] consonantGrid() {
+        String[][] cGrid = new String[8][22];
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < IPACHART[i].length; j++) {
+                if (phInv.contains(IPACHART[i][j])) {
+                    cGrid[i][j] = IPACHART[i][j];
+                } else {
+                    cGrid[i][j] = "0";
+                }
+            }
+        }
+        return cGrid;
+    }
+
+    /**
+     * This method returns the vowels in a grid.
+     * @return a 2d representation of the vowels in the language.
+     */
+    String[][] vowelGrid() {
+        String[][] vGrid = new String[7][10];
+        for (int i = 8; i < 15; i++) {
+            for (int j = 0; j < IPACHART[9].length; j++) {
+                if (phInv.contains(IPACHART[i][j])) {
+                    vGrid[i - 8][j] = IPACHART[i][j];
+                } else {
+                    vGrid[i - 8][j] = "0";
+                }
+            }
+        }
+        return vGrid;
     }
 }
