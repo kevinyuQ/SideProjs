@@ -143,6 +143,7 @@ public class SimplePhonology {
         for (String poa : poas) {
             addExtraConsonants(poa);
         }
+        addVowels(chooser);
         /*if (aspiration >= 4 && aspiration <= 7) {
             addAspirated("Voiceless");
         } else if (aspiration >= 8 && aspiration <= 9) {
@@ -188,23 +189,43 @@ public class SimplePhonology {
                     phInv.add(IPACHART[i][poaIndex + 1]);
                 }
                 if (aspiration >= 4 && aspiration <= 7) {
-                    phInv.add()
+                    phInv.add(IPACHART[i][poaIndex] + "ʰ");
+                } else if (aspiration >= 8 && aspiration <= 9) {
+                    phInv.add(IPACHART[i][poaIndex] + "ʰ");
+                    phInv.add(IPACHART[i][poaIndex + 1] + "ʰ");
                 }
             }
         }
     }
 
     /**
+     * Adds new vowels into the phonemic inventory.
+     * @param chooser
+     */
+    private void addVowels(Random chooser) {
+        int withoutNewVowelsSize = phInv.size();
+        while (chooser.nextInt() % 6 != 0 || phInv.size() < withoutNewVowelsSize + 9) {
+            int vowelRow = chooser.nextInt(7) + 8;
+            int vowelCol = chooser.nextInt(10);
+            String newVowel = IPACHART[vowelRow][vowelCol];
+            if (!newVowel.equals("0")) {
+                phInv.add(newVowel);
+            }
+        }
+    }
+
+
+    /**
      * This method adds aspirated consonants depending on what value
      * aspiration holds.
      */
-    private void addAspirated() {
+    /*private void addAspirated() {
         if (aspiration <= 3) {
             return;
         } else if (aspiration <= 7) {
 
         }
-    }
+    }*/
 
     HashSet<String> ipaToDesc(Character ipa) {
         if (locate(ipa)[0] < 8) {
