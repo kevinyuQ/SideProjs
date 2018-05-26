@@ -1,9 +1,8 @@
 import java.util.*;
 
 public class SimplePhonology {
-    Random chooser;
+    private Random chooser;
     private HashSet<String> phInv = new HashSet<>();
-    private Double SEED;
     private boolean voiced;
     private HashSet<String> poas = new HashSet<>();
     private int aspiration;
@@ -43,6 +42,7 @@ public class SimplePhonology {
         fillBase(); // this is foundation
         this.chooser = new Random(seed);
         decideCharacterisitics(); // now add in the extra features
+        //this.chooser = null; //THROW AWAY CHOOSER WHEN YOU'RE DONE SO THAT IT DOESN'T DO WEIRD THINGS???
     }
 
     /**
@@ -95,7 +95,7 @@ public class SimplePhonology {
      */
     private void decideExtraPOAs() {
         String[] options = {"Retroflex", "Palatal", "Uvular"};
-        while (chooser.nextInt() % 2 != 0) {
+        while (Math.abs(chooser.nextInt()) % 2 != 0) {
             poas.add(options[Math.abs(chooser.nextInt()) % 3]);
         }
     }
@@ -174,10 +174,10 @@ public class SimplePhonology {
             } else {
                 index = poaIndex;
             }
-            Random probabilityChooser = new Random();
+            //Random probabilityChooser = new Random(); //Something may be going on here <--- Change to just use chooser
             int probability = 100;
             if (i > 0 && (poaIndex == 0 || poaIndex == 6 || poaIndex == 14)) {
-                probability -= Math.abs(probabilityChooser.nextInt()) % 150;
+                probability -= Math.abs(chooser.nextInt()) % 150;
             }
             if (!IPACHART[i][index].equals("0") && probability > 50) {
                 phInv.add(IPACHART[i][index]);

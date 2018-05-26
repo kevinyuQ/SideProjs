@@ -1,6 +1,10 @@
 import org.junit.Test;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Random;
 import java.util.HashSet;
 
 public class TestSimplePhonology {
@@ -27,8 +31,8 @@ public class TestSimplePhonology {
      * 1234, 36, 3342 (<--)
      */
     @Test (timeout = 1000)
-    public void testPhonemicInventory () {
-        SimplePhonology tester = new SimplePhonology(344400); // I kinda like 1234's phonemic inv.
+    public void testPhonemicInventory() {
+        SimplePhonology tester = new SimplePhonology(1); // I kinda like 1234's phonemic inv.
         String[][] consonants = tester.consonantGrid();
         //DOES NOT INCLUDE ASPIRATED CONSONANTS
         for (int i = 0; i < consonants.length; i++) {
@@ -53,5 +57,27 @@ public class TestSimplePhonology {
                 System.out.print(p + " ");
             }
         }
+    }
+
+    @Test (timeout = 1000)
+    public void testSameSeedSameInv() {
+        SimplePhonology test = new SimplePhonology(413);
+        SimplePhonology testDup = new SimplePhonology(413);
+        assertEquals(test.getPhInv(), testDup.getPhInv());
+        assertArrayEquals(test.consonantGrid(), testDup.consonantGrid());
+        assertArrayEquals(test.vowelGrid(), testDup.vowelGrid());
+    }
+
+    public static void main(String[] args) {
+        /*for (int i = 0; i < 10; i++) {
+            Random testRandom = new Random(413);
+            System.out.println(testRandom.nextInt());
+            Random testRandomDup = new Random(413);
+            System.out.println(testRandomDup.nextInt());
+        }*/
+        Random testRandom = new Random(413);
+        System.out.println(testRandom.nextInt());
+        Random testRandomDup = new Random(413);
+        System.out.println(testRandomDup.nextInt());
     }
 }
