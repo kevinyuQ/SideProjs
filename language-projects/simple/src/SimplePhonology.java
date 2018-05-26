@@ -42,7 +42,7 @@ public class SimplePhonology {
     public SimplePhonology(int seed) {
         fillBase(); // this is foundation
         this.chooser = new Random(seed);
-        decideCharacterisitics(chooser); // now add in the extra features
+        decideCharacterisitics(); // now add in the extra features
     }
 
     /**
@@ -111,10 +111,8 @@ public class SimplePhonology {
     /**
      * THIRD
      * This method decides whether or not to include aspirated plosives.
-     *
-     * @param chooser a pseudo-random generator that decides what will get chosen.
      */
-    private void decideAspirated(Random chooser) {
+    private void decideAspirated() {
         /*
         OPTIONS:
         voiceless unaspirated and voiced unaspirated (0 - 3)
@@ -130,7 +128,7 @@ public class SimplePhonology {
      * syllables must have a vowel nucleus and at least on consonant.
      * Options include: CV, CVC, CLVC (L = liquid), CVCC
      */
-    private void decideSyllStruct(Random chooser) {
+    private void decideSyllStruct() {
         String[] options = {"CV", "CVC"};
         syllStruct = options[Math.abs(chooser.nextInt()) % 2]; // (???) Maybe use hash map for syllable structure
     }
@@ -139,14 +137,12 @@ public class SimplePhonology {
      * FIFTH
      * This method adds the extra phonemes that were not originally included in the intial phonemic
      * inventory.
-     *
-     * @param chooser
      */
-    private void addExtra(Random chooser) {
+    private void addExtra() {
         for (String poa : poas) {
             addExtraConsonants(poa);
         }
-        addVowels(chooser);
+        addVowels();
     }
 
     /**
@@ -202,10 +198,8 @@ public class SimplePhonology {
 
     /**
      * Adds new vowels into the phonemic inventory.
-     *
-     * @param chooser
      */
-    private void addVowels(Random chooser) {
+    private void addVowels() {
         int withoutNewVowelsSize = phInv.size();
         while (chooser.nextInt() % 6 != 0 || phInv.size() < withoutNewVowelsSize + 3) {
             int vowelRow = chooser.nextInt(7) + 8;
@@ -319,7 +313,7 @@ public class SimplePhonology {
         String syllable = consonants.get(cIndex) + vowels.get(vIndex);
         if (syllStruct.equals("CVC")) {
             String newConsonant = consonants.get(Math.abs(chooser.nextInt()) % consonants.size());
-            while (phonology.ipaToDesc(newConsonant).contains("Approximant")) {
+            while (ipaToDesc(newConsonant).contains("Approximant")) {
                 newConsonant = consonants.get(Math.abs(chooser.nextInt()) % consonants.size());
             }
             syllable = syllable + newConsonant;
