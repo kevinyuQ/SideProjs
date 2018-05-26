@@ -17,7 +17,7 @@ public class WordGenerator {
         for (int i = 0; i < 20; i++) {
             String word = "";
             while (chooser.nextInt() % 3 != 0) {
-                String nextSyllable = phonology.generateSyllable(consonants, vowels);
+                String nextSyllable = phonology.generateSyllable();
                 if (word.indexOf("ʰ") == word.length() - 1 && nextSyllable.indexOf("ʰ") == 0) {
                     nextSyllable = vowels.get(Math.abs(chooser.nextInt()) % vowels.size()) + nextSyllable;
                 }

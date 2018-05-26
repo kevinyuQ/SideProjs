@@ -301,11 +301,11 @@ public class SimplePhonology {
     /**
      * This method creates a syllable based on the consonants and vowels of the language
      * and the language's syllable structure rule.
-     * @param consonants the set of all consonants
-     * @param vowels the set of all vowel.
      * @return a string representing a syllable conforming to the language's syllable structure rule.
      */
-    String generateSyllable(List<String> consonants, List<String> vowels) {
+    String generateSyllable() {
+        List<String> consonants = getConsonants();
+        List<String> vowels = getVowels();
         //String syllStruct = phonology.getSyllStruct();
         int cIndex = Math.abs(chooser.nextInt()) % consonants.size();
         int vIndex = Math.abs(chooser.nextInt()) % vowels.size();
