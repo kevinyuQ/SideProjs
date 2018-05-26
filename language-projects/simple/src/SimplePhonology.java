@@ -174,7 +174,6 @@ public class SimplePhonology {
             } else {
                 index = poaIndex;
             }
-            //Random probabilityChooser = new Random(); //Something may be going on here <--- Change to just use chooser
             int probability = 100;
             if (i > 0 && (poaIndex == 0 || poaIndex == 6 || poaIndex == 14)) {
                 probability -= Math.abs(chooser.nextInt()) % 150;

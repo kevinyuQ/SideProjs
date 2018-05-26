@@ -67,17 +67,4 @@ public class TestSimplePhonology {
         assertArrayEquals(test.consonantGrid(), testDup.consonantGrid());
         assertArrayEquals(test.vowelGrid(), testDup.vowelGrid());
     }
-
-    public static void main(String[] args) {
-        /*for (int i = 0; i < 10; i++) {
-            Random testRandom = new Random(413);
-            System.out.println(testRandom.nextInt());
-            Random testRandomDup = new Random(413);
-            System.out.println(testRandomDup.nextInt());
-        }*/
-        Random testRandom = new Random(413);
-        System.out.println(testRandom.nextInt());
-        Random testRandomDup = new Random(413);
-        System.out.println(testRandomDup.nextInt());
-    }
 }

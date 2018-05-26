@@ -3,9 +3,9 @@ import java.util.Random;
 import java.util.List;
 
 public class WordGenerator {
-    SimplePhonology phonology;
-    Random chooser;
-    HashSet<String> words;
+    private SimplePhonology phonology;
+    private Random chooser;
+    private HashSet<String> words;
 
     public WordGenerator(SimplePhonology phonology, int seed) {
         words = new HashSet<>();
@@ -17,7 +17,7 @@ public class WordGenerator {
         for (int i = 0; i < 20; i++) {
             String word = "";
             while (chooser.nextInt() % 3 != 0) {
-                String nextSyllable = generateSyllable(consonants, vowels);
+                String nextSyllable = phonology.generateSyllable(consonants, vowels);
                 if (word.indexOf("ʰ") == word.length() - 1 && nextSyllable.indexOf("ʰ") == 0) {
                     nextSyllable = vowels.get(Math.abs(chooser.nextInt()) % vowels.size()) + nextSyllable;
                 }
@@ -34,7 +34,7 @@ public class WordGenerator {
      * @param vowels the set of all vowel.
      * @return a string representing a syllable conforming to the language's syllable structure rule.
      */
-     String generateSyllable(List<String> consonants, List<String> vowels) {
+     /*String generateSyllable(List<String> consonants, List<String> vowels) {
         String syllStruct = phonology.getSyllStruct();
         int cIndex = Math.abs(chooser.nextInt()) % consonants.size();
         int vIndex = Math.abs(chooser.nextInt()) % vowels.size();
@@ -47,7 +47,7 @@ public class WordGenerator {
             syllable = syllable + newConsonant;
         }
         return syllable;
-    }
+    }*/
 
     /**
      * This method returns the set of all words created so far.
