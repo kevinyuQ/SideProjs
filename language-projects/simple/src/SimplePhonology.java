@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class SimplePhonology {
+    Random chooser;
     private HashSet<String> phInv = new HashSet<>();
     private Double SEED;
     private boolean voiced;
@@ -40,7 +41,7 @@ public class SimplePhonology {
 
     public SimplePhonology(int seed) {
         fillBase(); // this is foundation
-        Random chooser = new Random(seed);
+        this.chooser = new Random(seed);
         decideCharacterisitics(chooser); // now add in the extra features
     }
 
@@ -78,12 +79,12 @@ public class SimplePhonology {
      * 3. Syllable structure
      * 4. Which places of articulation to include besides those in the base inventory.
      */
-    private void decideCharacterisitics(Random chooser) {
-        decideExtraPOAs(chooser);
-        decideVoiced(chooser);
-        decideAspirated(chooser);
-        decideSyllStruct(chooser);
-        addExtra(chooser);
+    private void decideCharacterisitics() {
+        decideExtraPOAs();
+        decideVoiced();
+        decideAspirated();
+        decideSyllStruct();
+        addExtra();
     }
 
     /**
@@ -92,7 +93,7 @@ public class SimplePhonology {
      * (First try) Decides among the following place"s of articulation:
      * retroflex, palatal, and uvular.
      */
-    private void decideExtraPOAs(Random chooser) {
+    private void decideExtraPOAs() {
         String[] options = {"Retroflex", "Palatal", "Uvular"};
         while (chooser.nextInt() % 2 != 0) {
             poas.add(options[Math.abs(chooser.nextInt()) % 3]);
@@ -103,7 +104,7 @@ public class SimplePhonology {
      * SECOND
      * This method decides whether or not to include voiced stops and fricatives.
      */
-    private void decideVoiced(Random chooser) {
+    private void decideVoiced() {
         voiced = chooser.nextBoolean();
     }
 
@@ -302,6 +303,28 @@ public class SimplePhonology {
             }
         }
         return new int[]{row, col};
+    }
+
+    /**
+     * This method creates a syllable based on the consonants and vowels of the language
+     * and the language's syllable structure rule.
+     * @param consonants the set of all consonants
+     * @param vowels the set of all vowel.
+     * @return a string representing a syllable conforming to the language's syllable structure rule.
+     */
+    String generateSyllable(List<String> consonants, List<String> vowels) {
+        //String syllStruct = phonology.getSyllStruct();
+        int cIndex = Math.abs(chooser.nextInt()) % consonants.size();
+        int vIndex = Math.abs(chooser.nextInt()) % vowels.size();
+        String syllable = consonants.get(cIndex) + vowels.get(vIndex);
+        if (syllStruct.equals("CVC")) {
+            String newConsonant = consonants.get(Math.abs(chooser.nextInt()) % consonants.size());
+            while (phonology.ipaToDesc(newConsonant).contains("Approximant")) {
+                newConsonant = consonants.get(Math.abs(chooser.nextInt()) % consonants.size());
+            }
+            syllable = syllable + newConsonant;
+        }
+        return syllable;
     }
 
     /**

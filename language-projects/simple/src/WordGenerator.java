@@ -34,7 +34,7 @@ public class WordGenerator {
      * @param vowels the set of all vowel.
      * @return a string representing a syllable conforming to the language's syllable structure rule.
      */
-    private String generateSyllable(List<String> consonants, List<String> vowels) {
+     String generateSyllable(List<String> consonants, List<String> vowels) {
         String syllStruct = phonology.getSyllStruct();
         int cIndex = Math.abs(chooser.nextInt()) % consonants.size();
         int vIndex = Math.abs(chooser.nextInt()) % vowels.size();
