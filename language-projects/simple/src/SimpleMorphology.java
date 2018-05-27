@@ -27,7 +27,8 @@ public class SimpleMorphology {
         this.phonology = phonology;
         chooser = new Random(seed);
         this.phInv = phonology.getPhInv();
-        decideAffixes();
+        decideCaseAffixes();
+
     }
 
     /**
@@ -35,7 +36,7 @@ public class SimpleMorphology {
      * get used. For the next noun cases, the chances that those cases get used is decreased. This is based on
      * the noun case hierarchy: https://en.wikipedia.org/wiki/Case_hierarchy
      */
-    private void decideAffixes() {
+    private void decideCaseAffixes() {
         /*String affix = phonology.generateSyllable(); //For now, for simplicity -- keep them as suffixes
         while (affixes.keySet().contains(affix)) {
             affix = affix + phonology.generateSyllable();

@@ -28,28 +28,6 @@ public class WordGenerator {
     }
 
     /**
-     * This method creates a syllable based on the consonants and vowels of the language
-     * and the language's syllable structure rule.
-     * @param consonants the set of all consonants
-     * @param vowels the set of all vowel.
-     * @return a string representing a syllable conforming to the language's syllable structure rule.
-     */
-     /*String generateSyllable(List<String> consonants, List<String> vowels) {
-        String syllStruct = phonology.getSyllStruct();
-        int cIndex = Math.abs(chooser.nextInt()) % consonants.size();
-        int vIndex = Math.abs(chooser.nextInt()) % vowels.size();
-        String syllable = consonants.get(cIndex) + vowels.get(vIndex);
-        if (syllStruct.equals("CVC")) {
-            String newConsonant = consonants.get(Math.abs(chooser.nextInt()) % consonants.size());
-            while (phonology.ipaToDesc(newConsonant).contains("Approximant")) {
-                newConsonant = consonants.get(Math.abs(chooser.nextInt()) % consonants.size());
-            }
-            syllable = syllable + newConsonant;
-        }
-        return syllable;
-    }*/
-
-    /**
      * This method returns the set of all words created so far.
      * @return HashSet containing all the words in the language.
      */
