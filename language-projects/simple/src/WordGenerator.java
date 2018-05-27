@@ -21,7 +21,7 @@ public class WordGenerator {
                 if (word.indexOf("ʰ") == word.length() - 1 && nextSyllable.indexOf("ʰ") == 0) {
                     nextSyllable = vowels.get(Math.abs(chooser.nextInt()) % vowels.size()) + nextSyllable;
                 }
-                word = word + nextSyllable; //generateSyllable(consonants, vowels);
+                word = word + nextSyllable;
             }
             words.add(word);
         }

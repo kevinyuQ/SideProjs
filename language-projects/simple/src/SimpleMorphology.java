@@ -37,16 +37,12 @@ public class SimpleMorphology {
      * the noun case hierarchy: https://en.wikipedia.org/wiki/Case_hierarchy
      */
     private void decideCaseAffixes() {
-        /*String affix = phonology.generateSyllable(); //For now, for simplicity -- keep them as suffixes
-        while (affixes.keySet().contains(affix)) {
-            affix = affix + phonology.generateSyllable();
-        }
-        Double probability = 1.00;*/
         for (int i = 0; i < CASES.length; i++) {
-            String affix = phonology.generateSyllable();
+            /*String affix = phonology.generateSyllable();
             while (affixToCase.keySet().contains(affix)) {
                 affix = affix + phonology.generateSyllable();
-            }
+            }*/
+            String affix = generateAffix();
             Double probability = 1.00;
             if (i > 3) {
                 probability -= 0.16;
@@ -59,6 +55,34 @@ public class SimpleMorphology {
                 break;
             }
         }
+    }
+
+    /**
+     * This method will decide person and number affixes for verb conjugation. It will
+     * decide affixes for 1SG, 2SG, 3SG, 1PL, 2PL, and 3PL. These affixes will be attached
+     * to verbs and will be used in conjugation.
+     */
+    private void decidePersonNumberAffixes() {
+        String[] persons = new String[]{"1", "2", "3"};
+        String[] numbers = new String[]{"SG", "PL"};
+        for (String person : persons) {
+            for (String number : numbers) {
+                String affix = generateAffix();
+                affixToCase.put()
+            }
+        }
+    }
+
+    /**
+     * This method creates a new affix that can be paired with some meaning.
+     * @return the new affix as a String.
+     */
+    private String generateAffix() {
+        String affix = phonology.generateSyllable();
+        while (affixToCase.keySet().contains(affix)) {
+            affix = affix + phonology.generateSyllable();
+        }
+        return affix;
     }
 
     /**
