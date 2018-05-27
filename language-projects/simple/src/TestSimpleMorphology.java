@@ -9,8 +9,8 @@ public class TestSimpleMorphology {
 
     @Test (timeout = 1000)
     public void testDecideAffixes() {
-        SimplePhonology sp = new SimplePhonology(312);
-        SimpleMorphology sm = new SimpleMorphology(312, sp);
+        SimplePhonology sp = new SimplePhonology(31211);
+        SimpleMorphology sm = new SimpleMorphology(31211, sp);
         HashMap<String, String> suffixes = sm.getAffixes();
         for (String suffix : suffixes.keySet()) {
             System.out.println(suffix + " -- " + suffixes.get(suffix));

@@ -25,8 +25,8 @@
       <file leaf-file-name="SimplePhonology.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SimplePhonology.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="398" column="1" lean-forward="true" selection-start-line="398" selection-start-column="1" selection-end-line="398" selection-end-column="1" />
+            <state relative-caret-position="397">
+              <caret line="30" column="42" lean-forward="false" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -42,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimpleMorphology.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SimpleMorphology.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SimpleMorphology.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-396">
-              <caret line="114" column="26" lean-forward="false" selection-start-line="114" selection-start-column="26" selection-end-line="114" selection-end-column="26" />
+            <state relative-caret-position="330">
+              <caret line="147" column="5" lean-forward="false" selection-start-line="147" selection-start-column="5" selection-end-line="147" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -55,18 +55,18 @@
       <file leaf-file-name="TestSimpleMorphology.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TestSimpleMorphology.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="535">
-              <caret line="26" column="10" lean-forward="false" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+            <state relative-caret-position="227">
+              <caret line="12" column="56" lean-forward="false" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WordTester.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="WordTester.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WordTester.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-52">
-              <caret line="11" column="64" lean-forward="false" selection-start-line="11" selection-start-column="64" selection-end-line="11" selection-end-column="64" />
+            <state relative-caret-position="462">
+              <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -111,10 +111,10 @@
         <option value="$PROJECT_DIR$/src/LexiconCreator.java" />
         <option value="$PROJECT_DIR$/src/TestSimplePhonology.java" />
         <option value="$PROJECT_DIR$/src/WordTester.java" />
-        <option value="$PROJECT_DIR$/src/SimplePhonology.java" />
-        <option value="$PROJECT_DIR$/src/TestSimpleMorphology.java" />
         <option value="$PROJECT_DIR$/src/WordGenerator.java" />
         <option value="$PROJECT_DIR$/src/SimpleMorphology.java" />
+        <option value="$PROJECT_DIR$/src/TestSimpleMorphology.java" />
+        <option value="$PROJECT_DIR$/src/SimplePhonology.java" />
       </list>
     </option>
   </component>
@@ -178,7 +178,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TestSimpleMorphology.testDecideAffixes">
+  <component name="RunManager" selected="JUnit.WordTester.testWordCreation">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -368,10 +368,10 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.TestSimpleMorphology.testDecideAffixes" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.TestSimpleMorphology.testSameSeedSameSuffixes" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.TestSimpleMorphology.testAddAffix" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.WordTester.testWordCreation" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.WordTester.testWordCreation" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.TestSimpleMorphology.testDecideAffixes" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.TestSimpleMorphology.testSameSeedSameSuffixes" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.TestSimpleMorphology.testAddAffix" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.WordTester.testSameSeedSameWords" />
       </list>
     </recent_temporary>
@@ -393,18 +393,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestSimpleMorphology_testAddAffix - 2018.05.26 at 20h 36m 32s.xml">
-      <configuration name="TestSimpleMorphology.testAddAffix" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestSimpleMorphology_testAddAffix - 2018.05.26 at 20h 36m 40s.xml">
-      <configuration name="TestSimpleMorphology.testAddAffix" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestSimpleMorphology_testAddAffix - 2018.05.26 at 20h 37m 27s.xml">
-      <configuration name="TestSimpleMorphology.testAddAffix" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestSimpleMorphology_testAddAffix - 2018.05.26 at 20h 37m 59s.xml">
-      <configuration name="TestSimpleMorphology.testAddAffix" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TestSimpleMorphology_testAddAffix - 2018.05.26 at 20h 38m 39s.xml">
       <configuration name="TestSimpleMorphology.testAddAffix" configurationId="JUnit" />
     </history-entry>
@@ -420,8 +408,20 @@
     <history-entry file="TestSimpleMorphology_testDecideAffixes - 2018.05.26 at 21h 05m 15s.xml">
       <configuration name="TestSimpleMorphology.testDecideAffixes" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TestSimpleMorphology_testDecideAffixes - 2018.05.26 at 21h 20m 27s.xml">
+      <configuration name="TestSimpleMorphology.testDecideAffixes" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestSimpleMorphology_testDecideAffixes - 2018.05.26 at 21h 22m 22s.xml">
+      <configuration name="TestSimpleMorphology.testDecideAffixes" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestSimpleMorphology_testDecideAffixes - 2018.05.26 at 21h 26m 08s.xml">
+      <configuration name="TestSimpleMorphology.testDecideAffixes" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="TestSimpleMorphology_testSameSeedSameSuffixes - 2018.05.26 at 20h 42m 32s.xml">
       <configuration name="TestSimpleMorphology.testSameSeedSameSuffixes" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="WordTester_testWordCreation - 2018.05.26 at 21h 26m 22s.xml">
+      <configuration name="WordTester.testWordCreation" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -532,22 +532,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TestSimplePhonology.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-954">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SimplePhonology.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="398" column="1" lean-forward="true" selection-start-line="398" selection-start-column="1" selection-end-line="398" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/WordGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -556,26 +540,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/WordTester.java">
+    <entry file="file://$PROJECT_DIR$/src/SimpleMorphology.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-52">
-          <caret line="11" column="64" lean-forward="false" selection-start-line="11" selection-start-column="64" selection-end-line="11" selection-end-column="64" />
+        <state relative-caret-position="330">
+          <caret line="147" column="5" lean-forward="false" selection-start-line="147" selection-start-column="5" selection-end-line="147" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TestSimpleMorphology.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="26" column="10" lean-forward="false" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+        <state relative-caret-position="227">
+          <caret line="12" column="56" lean-forward="false" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SimpleMorphology.java">
+    <entry file="file://$PROJECT_DIR$/src/SimplePhonology.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-396">
-          <caret line="114" column="26" lean-forward="false" selection-start-line="114" selection-start-column="26" selection-end-line="114" selection-end-column="26" />
+        <state relative-caret-position="397">
+          <caret line="30" column="42" lean-forward="false" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestSimplePhonology.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-954">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WordTester.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
           <folding />
         </state>
       </provider>
