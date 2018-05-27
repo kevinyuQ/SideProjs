@@ -45,8 +45,8 @@
       <file leaf-file-name="SimpleMorphology.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SimpleMorphology.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+            <state relative-caret-position="-396">
+              <caret line="114" column="26" lean-forward="false" selection-start-line="114" selection-start-column="26" selection-end-line="114" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -88,6 +88,8 @@
     <replaceStrings>
       <replace />
       <replace>&quot;</replace>
+      <replace>affixToMeaning</replace>
+      <replace>meaningToAffix</replace>
     </replaceStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -391,12 +393,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestSimpleMorphology_testAddAffix - 2018.05.26 at 20h 32m 17s.xml">
-      <configuration name="TestSimpleMorphology.testAddAffix" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestSimpleMorphology_testAddAffix - 2018.05.26 at 20h 36m 15s.xml">
-      <configuration name="TestSimpleMorphology.testAddAffix" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TestSimpleMorphology_testAddAffix - 2018.05.26 at 20h 36m 32s.xml">
       <configuration name="TestSimpleMorphology.testAddAffix" configurationId="JUnit" />
     </history-entry>
@@ -418,6 +414,12 @@
     <history-entry file="TestSimpleMorphology_testDecideAffixes - 2018.05.26 at 20h 43m 10s.xml">
       <configuration name="TestSimpleMorphology.testDecideAffixes" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TestSimpleMorphology_testDecideAffixes - 2018.05.26 at 21h 04m 38s.xml">
+      <configuration name="TestSimpleMorphology.testDecideAffixes" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestSimpleMorphology_testDecideAffixes - 2018.05.26 at 21h 05m 15s.xml">
+      <configuration name="TestSimpleMorphology.testDecideAffixes" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="TestSimpleMorphology_testSameSeedSameSuffixes - 2018.05.26 at 20h 42m 32s.xml">
       <configuration name="TestSimpleMorphology.testSameSeedSameSuffixes" configurationId="JUnit" />
     </history-entry>
@@ -434,7 +436,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289941" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289941" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Style Checker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -572,8 +574,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SimpleMorphology.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        <state relative-caret-position="-396">
+          <caret line="114" column="26" lean-forward="false" selection-start-line="114" selection-start-column="26" selection-end-line="114" selection-end-column="26" />
           <folding />
         </state>
       </provider>

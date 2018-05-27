@@ -1,6 +1,5 @@
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -9,8 +8,8 @@ import java.util.Random;
 public class SimpleMorphology {
     SimplePhonology phonology;
     Random chooser;
-    HashMap<String, String> affixToCase;
-    HashMap<String, String> caseToAffix;
+    HashMap<String, String> affixToMeaning;
+    HashMap<String, String> meaningToAffix;
     /*
      Case hierarchy: nominative → accusative or ergative → genitive →
                      dative → locative or prepositional → ablative and/or instrumental → others.
@@ -22,13 +21,15 @@ public class SimpleMorphology {
     HashSet<String> phInv;
 
     public SimpleMorphology(int seed, SimplePhonology phonology) {
-        affixToCase = new HashMap<>();
-        caseToAffix = new HashMap<>();
+        affixToMeaning = new HashMap<>();
+        meaningToAffix = new HashMap<>();
         this.phonology = phonology;
         chooser = new Random(seed);
         this.phInv = phonology.getPhInv();
         decideCaseAffixes();
-
+        decidePluralityAffixes();
+        decideGenderAffixes();
+        decidePersonNumberAffixes();
     }
 
     /**
@@ -39,7 +40,7 @@ public class SimpleMorphology {
     private void decideCaseAffixes() {
         for (int i = 0; i < CASES.length; i++) {
             /*String affix = phonology.generateSyllable();
-            while (affixToCase.keySet().contains(affix)) {
+            while (affixToMeaning.keySet().contains(affix)) {
                 affix = affix + phonology.generateSyllable();
             }*/
             String affix = generateAffix();
@@ -49,8 +50,8 @@ public class SimpleMorphology {
             }
             int x = Math.abs(chooser.nextInt()) % 100;
             if (x < probability * 100) {
-                caseToAffix.put(CASES[i], affix);
-                affixToCase.put(affix, CASES[i]);
+                meaningToAffix.put(CASES[i], affix);
+                affixToMeaning.put(affix, CASES[i]);
             } else if (x > probability * 100) {
                 break;
             }
@@ -68,8 +69,50 @@ public class SimpleMorphology {
         for (String person : persons) {
             for (String number : numbers) {
                 String affix = generateAffix();
-                affixToCase.put()
+                affixToMeaning.put(affix, person + number);
+                meaningToAffix.put(person + number, affix);
             }
+        }
+    }
+
+    /**
+     * This method decides what affixes to assign to denote number.
+     * The following numbers are possible: singular, dual, plural.
+     * Singular is by default null morpheme, so no affix will be created to
+     * express singular.
+     */
+    private void decidePluralityAffixes() {
+        int dualProbability = 30;
+        int pluralProbability = 80;
+        int decision = chooser.nextInt() % 100;
+        if (decision < dualProbability) {
+            String dualAffix = generateAffix();
+            meaningToAffix.put("Dual", dualAffix);
+            affixToMeaning.put(dualAffix, "Dual");
+            String plAffix = generateAffix();
+            meaningToAffix.put("Plural", plAffix);
+            affixToMeaning.put(plAffix, "Plural");
+        } else if (decision < pluralProbability) {
+            String plAffix = generateAffix();
+            meaningToAffix.put("Plural", plAffix);
+            affixToMeaning.put(plAffix, "Plural");
+        }
+    }
+
+    /**
+     * This method will decide whether or not to include affixes for gender.
+     * Grammatical gender for now is limited to two genders, which will be referred
+     * to as masculine and feminine (similar to Spanish).
+     */
+    private void decideGenderAffixes() {
+        int genderProbability = chooser.nextInt() % 100;
+        if (genderProbability < 50) {
+            String mascAffix = generateAffix();
+            String femAffix = generateAffix();
+            affixToMeaning.put(mascAffix, "Masculine");
+            meaningToAffix.put("Masculine", mascAffix);
+            affixToMeaning.put(femAffix, "Feminine");
+            meaningToAffix.put("Feminine", femAffix);
         }
     }
 
@@ -79,7 +122,7 @@ public class SimpleMorphology {
      */
     private String generateAffix() {
         String affix = phonology.generateSyllable();
-        while (affixToCase.keySet().contains(affix)) {
+        while (affixToMeaning.keySet().contains(affix)) {
             affix = affix + phonology.generateSyllable();
         }
         return affix;
@@ -92,7 +135,7 @@ public class SimpleMorphology {
      * @return
      */
     public String addAffix(String noun, String nounCase) {
-        String affix = caseToAffix.get(nounCase);
+        String affix = meaningToAffix.get(nounCase);
         return noun + affix; //FOR SIMPLICITY: USE SUFFIXES ONLY
     }
 
@@ -101,6 +144,6 @@ public class SimpleMorphology {
      * @return a hash map representing the language's affixes
      */
     public HashMap<String, String> getAffixes() {
-        return caseToAffix;
+        return meaningToAffix;
     }
 }
