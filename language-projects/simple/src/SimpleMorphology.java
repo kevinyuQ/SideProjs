@@ -9,7 +9,8 @@ import java.util.Random;
 public class SimpleMorphology {
     SimplePhonology phonology;
     Random chooser;
-    HashMap<String, String> affixes;
+    HashMap<String, String> affixToCase;
+    HashMap<String, String> caseToAffix;
     /*
      Case hierarchy: nominative → accusative or ergative → genitive →
                      dative → locative or prepositional → ablative and/or instrumental → others.
@@ -21,25 +22,12 @@ public class SimpleMorphology {
     HashSet<String> phInv;
 
     public SimpleMorphology(int seed, SimplePhonology phonology) {
-        this.affixes = new HashMap<>();
+        affixToCase = new HashMap<>();
+        caseToAffix = new HashMap<>();
         this.phonology = phonology;
         chooser = new Random(seed);
         this.phInv = phonology.getPhInv();
         decideAffixes();
-        /*String affix = phonology.generateSyllable(); //For now, for simplicity -- keep them as suffixes
-        while (affixes.keySet().contains(affix)) {
-            affix = affix + phonology.generateSyllable();
-        }
-        Double probability = 1.00;
-        for (int i = 0; i < CASES.length; i++) {
-            if (i > 3) {
-                probability -= 0.08;
-            }
-            int x = Math.abs(chooser.nextInt()) % 100;
-            if (x < probability * 100) {
-                affixes.put(affix, CASES[i]);
-            }
-        }*/
     }
 
     /**
@@ -55,7 +43,7 @@ public class SimpleMorphology {
         Double probability = 1.00;*/
         for (int i = 0; i < CASES.length; i++) {
             String affix = phonology.generateSyllable();
-            while (affixes.keySet().contains(affix)) {
+            while (affixToCase.keySet().contains(affix)) {
                 affix = affix + phonology.generateSyllable();
             }
             Double probability = 1.00;
@@ -64,7 +52,8 @@ public class SimpleMorphology {
             }
             int x = Math.abs(chooser.nextInt()) % 100;
             if (x < probability * 100) {
-                affixes.put(affix, CASES[i]);
+                caseToAffix.put(CASES[i], affix);
+                affixToCase.put(affix, CASES[i]);
             } else if (x > probability * 100) {
                 break;
             }
@@ -78,7 +67,7 @@ public class SimpleMorphology {
      * @return
      */
     public String addAffix(String noun, String nounCase) {
-        String affix = affixes.get(nounCase);
+        String affix = caseToAffix.get(nounCase);
         return noun + affix; //FOR SIMPLICITY: USE SUFFIXES ONLY
     }
 
@@ -87,6 +76,6 @@ public class SimpleMorphology {
      * @return a hash map representing the language's affixes
      */
     public HashMap<String, String> getAffixes() {
-        return affixes;
+        return caseToAffix;
     }
 }
