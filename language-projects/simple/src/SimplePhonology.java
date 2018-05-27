@@ -38,11 +38,12 @@ public class SimplePhonology {
             {"a", "ɶ", "0", "0", "0", "0", "0", "0", "ɑ", "ɒ"}
     };
 
+    //private static final HashSet<String> exoticPhonemes = new HashSet<>();
+
     public SimplePhonology(int seed) {
         fillBase(); // this is foundation
         this.chooser = new Random(seed);
         decideCharacterisitics(); // now add in the extra features
-        //this.chooser = null; //THROW AWAY CHOOSER WHEN YOU'RE DONE SO THAT IT DOESN'T DO WEIRD THINGS???
     }
 
     /**

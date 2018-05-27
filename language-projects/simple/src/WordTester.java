@@ -8,8 +8,8 @@ public class WordTester {
 
     @Test (timeout = 1000)
     public void testWordCreation() {
-        SimplePhonology testPhonology = new SimplePhonology(1233);
-        WordGenerator wg = new WordGenerator(testPhonology, 1233);
+        SimplePhonology testPhonology = new SimplePhonology(1134233);
+        WordGenerator wg = new WordGenerator(testPhonology, 1134233);
         HashSet<String> words = wg.getWords();
         for (String word : words) {
             System.out.println(word);

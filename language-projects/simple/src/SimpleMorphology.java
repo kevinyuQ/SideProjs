@@ -3,6 +3,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * For simplicity, stick with SOV language with suffixes only.
+ */
 public class SimpleMorphology {
     SimplePhonology phonology;
     Random chooser;
@@ -18,10 +21,10 @@ public class SimpleMorphology {
     HashSet<String> phInv;
 
     public SimpleMorphology(int seed, SimplePhonology phonology) {
+        this.affixes = new HashMap<>();
         this.phonology = phonology;
         chooser = new Random(seed);
         this.phInv = phonology.getPhInv();
-        //WordGenerator wg = new
         decideAffixes();
         /*String affix = phonology.generateSyllable(); //For now, for simplicity -- keep them as suffixes
         while (affixes.keySet().contains(affix)) {
@@ -45,18 +48,25 @@ public class SimpleMorphology {
      * the noun case hierarchy: https://en.wikipedia.org/wiki/Case_hierarchy
      */
     private void decideAffixes() {
-        String affix = phonology.generateSyllable(); //For now, for simplicity -- keep them as suffixes
+        /*String affix = phonology.generateSyllable(); //For now, for simplicity -- keep them as suffixes
         while (affixes.keySet().contains(affix)) {
             affix = affix + phonology.generateSyllable();
         }
-        Double probability = 1.00;
+        Double probability = 1.00;*/
         for (int i = 0; i < CASES.length; i++) {
+            String affix = phonology.generateSyllable();
+            while (affixes.keySet().contains(affix)) {
+                affix = affix + phonology.generateSyllable();
+            }
+            Double probability = 1.00;
             if (i > 3) {
-                probability -= 0.14;
+                probability -= 0.16;
             }
             int x = Math.abs(chooser.nextInt()) % 100;
             if (x < probability * 100) {
                 affixes.put(affix, CASES[i]);
+            } else if (x > probability * 100) {
+                break;
             }
         }
     }
@@ -72,4 +82,11 @@ public class SimpleMorphology {
         return noun + affix; //FOR SIMPLICITY: USE SUFFIXES ONLY
     }
 
+    /**
+     * This method returns the HashMap of all of the language's affixes.
+     * @return a hash map representing the language's affixes
+     */
+    public HashMap<String, String> getAffixes() {
+        return affixes;
+    }
 }
